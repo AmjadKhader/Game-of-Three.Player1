@@ -3,10 +3,11 @@ package justeattakeaway.player1.producer;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import static justeattakeaway.player1.Player1Application.game;
+import java.util.logging.Logger;
 
 @Component
 public class MessageProducer {
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     private final KafkaTemplate<String, Integer> kafkaTemplate;
 
@@ -15,7 +16,7 @@ public class MessageProducer {
     }
 
     public void send(Integer message) {
-        System.out.println("[GAME-OF-THREE][Player 1] sends :" + message);
+        logger.info("[GAME-OF-THREE][Player 1] sends :" + message);
         kafkaTemplate.send("game.p2", message);
     }
 }

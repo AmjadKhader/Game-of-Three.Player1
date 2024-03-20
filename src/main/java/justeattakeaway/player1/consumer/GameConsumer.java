@@ -1,36 +1,30 @@
 package justeattakeaway.player1.consumer;
 
-import justeattakeaway.player1.producer.MessageProducer;
+import justeattakeaway.player1.gameplay.Play;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.util.logging.Logger;
 
-import static justeattakeaway.player1.Player1Application.game;
-
 @Component
-public class MessageConsumer {
+public class GameConsumer {
 
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private final MessageProducer producer;
+    private final Play gameplay;
 
-    public MessageConsumer(MessageProducer producer) {
-        this.producer = producer;
+    public GameConsumer(Play gameplay) {
+        this.gameplay = gameplay;
     }
 
     @KafkaListener(topics = "game.p1", groupId = "player1")
     public void listen(ConsumerRecord<String, Integer> consumerRecord) {
         Integer receivedNumber = consumerRecord.value();
+
         logger.info("----------------------");
         logger.info("[GAME-OF-THREE][Player 1] receives: " + receivedNumber);
 
-        game.playTurn(receivedNumber);
-        if (game.isGameOver()) {
-            logger.info("[GAME-OF-THREE] Player 1 WINS!!");
-        } else {
-            producer.send(game.getCurrentNumber());
-        }
+        gameplay.myTurn(receivedNumber);
     }
 }

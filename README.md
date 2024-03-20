@@ -17,11 +17,13 @@ Each player listens for moves sent by the other player on a dedicated topic.
 
 #### Project Structure:
 
-* **[Shared Domain Model](https://github.com/AmjadKhader/Game-of-three.Game)**: A separate project contains the Game class, defining the game logic.
+* **[Shared Domain Model](https://github.com/AmjadKhader/Game-of-three.Game)**: A separate project contains the Game
+  class, defining the game logic.
 
-* **Player Applications**: Two Spring Boot applications represent each player ([Player1Application](https://github.com/AmjadKhader/Game-of-Three.Player1) and [Player2Application](https://github.com/AmjadKhader/Game-of-Three.Player2)). They use Kafka to send and receive moves from their designated topics.
-
-
+* **Player Applications**: Two Spring Boot applications represent each
+  player ([Player1Application](https://github.com/AmjadKhader/Game-of-Three.Player1)
+  and [Player2Application](https://github.com/AmjadKhader/Game-of-Three.Player2)). They use Kafka to send and receive
+  moves from their designated topics.
 
 ### Running the Application:
 
@@ -29,12 +31,12 @@ Ensure you have docker compose up using the command `docker compose up -d`.
 
 **Ensure to run both services**
 
-
 #### Additional Notes:
 
 This is a basic implementation focusing on game logic and Kafka communication.
-You can manually choose the starting value of the game by calling `POST /game/play` 
+You can manually choose the starting value of the game by calling `POST /game/play`
 
 **Technologies Used:**
-* Spring Boot 
+
+* Spring Boot
 * Apache Kafka

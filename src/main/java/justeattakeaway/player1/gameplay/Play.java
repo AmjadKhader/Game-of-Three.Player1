@@ -21,18 +21,15 @@ public class Play {
     }
 
     public void myTurn(int receivedNumber) {
-        if (game.isGameOver() || receivedNumber <= 1) {
+        game.playTurn(receivedNumber); // divide number over 3
+        if (game.isGameOver()) {
             logger.info("[GAME-OF-THREE] Player 1 WINS!!");
         } else {
             if (gameMode.equals(GameMode.MANUAL)) {
-
                 game.setCurrentNumber(ScanInput.getInstance().scanInt());
-                gameProducer.send(game.getCurrentNumber());
-            } else {
-
-                game.playTurn(receivedNumber);
-                gameProducer.send(game.getCurrentNumber());
             }
+
+            gameProducer.send(game.getCurrentNumber());
         }
     }
 }

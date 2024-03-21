@@ -13,7 +13,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:latest
-    container_name: kafka-kafka
+    container_name: kafka
     restart: always
     depends_on:
       - zookeeper
@@ -41,3 +41,29 @@ services:
         /bin/kafka-topics --create --topic game.p2 --if-not-exists --bootstrap-server kafka:9092 &&
         echo "Finished!"
         "
+
+  player2-service:
+    restart: on-failure
+    container_name: player-2
+    image: justeattakeawayplayer2challenge
+    ports:
+      - 8081:8081
+    depends_on:
+      - kafka-topics-generator
+    environment:
+      - mode=automatic
+    network_mode: "host"
+    command: [ "sleep", "5", "java", "-jar", "justeattakeawayplayer2challenge.jar" ]
+
+  player1-service:
+    container_name: player-1
+    restart: on-failure
+    image: justeattakeawayplayer1challenge
+    depends_on:
+      - kafka-topics-generator
+    ports:
+      - 8080:8080
+    environment:
+      - mode=automatic
+    network_mode: "host"
+    command: [ "sleep", "5", "java", "-jar", "justeattakeawayplayer1challenge.jar" ]

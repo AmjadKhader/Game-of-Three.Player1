@@ -27,9 +27,10 @@ Each player listens for moves sent by the other player on a dedicated topic.
 
 ### Running the Application:
 
-Ensure you have docker compose up using the command `docker compose up -d`.
+Make sure to create docker images for both applications using `docker build -t justeattakeawayplayer1challenge .` and
+`docker build -t justeattakeawayplayer2challenge .`
 
-**Ensure to run both services**
+Ensure you have docker compose up using the command `docker compose up -d`.
 
 #### Additional Notes:
 

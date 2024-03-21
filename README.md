@@ -32,11 +32,6 @@ Make sure to create docker images for both applications using `docker build -t j
 
 Ensure you have docker compose up using the command `docker compose up -d`.
 
-#### Additional Notes:
-
-This is a basic implementation focusing on game logic and Kafka communication.
-You can manually choose the starting value of the game by calling `POST /game/play`
-
 **Technologies Used:**
 
 * Spring Boot
